@@ -18,7 +18,7 @@ class CusFormSea(forms.Form):
     type_way = forms.CharField(max_length=100)
     term = forms.CharField(max_length=100)
     po_no = forms.CharField(max_length=200)
-    co_by_forwarder= forms.CharField(max_length=300)
+    co_by_forwarder= forms.CharField(max_length=200)
     packing_by_forwarder= forms.CharField(max_length=300)
     hazardous_yes_no= forms.CharField(max_length=300)
     date_request = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
