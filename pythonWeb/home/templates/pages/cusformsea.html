@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>LOGICTIS SERVICES</title>
+   
+</head>
+<body>
+    <left>
+        <form method='POST'>
+        {% csrf_token %}
+        <p style="color:blue;"><b>P/C Collection</b> {{form.pc_collection}}</p> <br>      
+        <p style="color:blue;"><b>Collection Address</b>{{form.collection_address}}</p> <br>            
+        <input type='submit' name='Save' value='Confirm'>
+       <!-- <input type="date" name="bday" max="1979-12-31"><br><br>-->
+        <!--<input type='submit' name='Confirm' value='Confirm'>
+
+            <input type='submit' name='Send Email' value='Send Email'>
+        </form>-->
+        <!--$("button").click(function(){
+        $("p").hide();
+        });-->
+    </left>
+
+</body>
+</html>
