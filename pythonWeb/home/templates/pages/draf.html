@@ -1,0 +1,175 @@
+<!--<form method="POST" action="."> 
+    <label>Title:</label>
+    <input id="title" name="title" type="text">
+    <label>Body:</label>
+    <input id="body" name="body" type="text">
+    <input type="submit" value = "OK">
+</form>--> 
+<!-- home page-->
+
+<!-- sign in -->
+<!--|<a href="{% url 'signin' %}">Đăng ký</a>-->
+
+<!--------------sdghfjhdfhf
+from django import forms
+def save_cusFormSea(self):
+        if 'pc_collection' in self.cleaned_data:
+            pc_collection1 = self.cleaned_data['pc_collection']
+            collection_address1 = self.cleaned_data['collection_address']
+            consignee1 = self.cleaned_data['consignee']
+            commodity1 = self.cleaned_data['commodity']
+            detail_of_packag1 = self.cleaned_data['detail_of_packag']
+            type_way1 = self.cleaned_data['type_way']
+            term1 = self.cleaned_data['term']
+            po_no1 = self.cleaned_data['po_no']
+            hazardous_yes_no1 = self.cleaned_data['hazardous_yes_no']
+            date_request1 = self.cleaned_data['date_request']
+            deadline_pickup1 = self.cleaned_data['deadline_pickup']
+            deadline_bill1 = self.cleaned_data['deadline_bill']
+            deadline_available1 = self.cleaned_data['deadline_available']-->
+
+          <!--- if request.method=='POST':
+            form = CusFormSea(request.POST)
+            if form.is_valid():
+                if 'Confirm' in request.POST:
+                    form.save()
+                
+
+                    return HttpResponseRedirect('/')
+                if 'Send Email' in request.POST:
+                    form.send_email_act()
+                return HttpResponseRedirect('/')
+                #return HttpResponse("Your email is send.")
+
+            return render(request, 'pages/register.html',{'form':form})-->
+
+
+<!-- data base
+class Database_control:
+    def __init__(self):
+        database = os.getcwd() + "/db.sqlite3"
+        self.conn = sqlite3.connect(database)
+        self.cursor = self.conn.cursor()
+        return None
+    def createTable(self):
+        #get list of existing table names
+        get_tables_command = "SELECT name FROM sqlite_master WHERE type = 'table'"
+        self.cursor.execute(get_tables_command)
+        table_names = [i[0] for i in self.cursor.fetchall()]
+
+        #create table if not existed
+        table_name = "khanhs5"
+        if table_name not in table_names:
+            create_command = "CREATE TABLE "+ table_name +" ( pc_collection text, collection_address text, consignee text, commodity text, detail_of_package text, type_way text, term text, po_no text, co_by_forwarder text, packing_by_forwarder text, hazardous_yes_no text, date_request text, deadline_pickup  text, deadline_bill  text, deadline_available  text)"
+            self.cursor.execute(create_command)
+            self.conn.commit()
+        return None
+
+    def insertContent(self):
+        #check table existence
+        get_tables_command = "SELECT name FROM sqlite_master WHERE type = 'table'"
+        self.cursor.execute(get_tables_command)
+        table_names = [i[0] for i in self.cursor.fetchall()]
+        print(table_names)
+
+        table_name = "khanhs5"
+        if table_name in table_names:
+            insert_command = generateInsertCommand(table_name, [ 'pc_collection ', 'collection_address', 'consignee', 'commodity', 'detail_of_package', 'type_way', 'term', 'po_no', 'co_by_forwarder', 'packing_by_forwarder', 'hazardous_yes_no', 'date_request', 'deadline_pickup', 'deadline_bill', 'deadline_available'])
+            self.cursor.execute(insert_command, ['pc_collection ', 'collection_address', 'consignee', 'commodity', 'detail_of_package', 'type_way', 'term', 'po_no', 'co_by_forwarder', 'packing_by_forwarder', 'hazardous_yes_no', 'date_request', 'deadline_pickup', 'deadline_bill', 'deadline_available'])
+            self.conn.commit()
+        else:
+            raise Exception("(VAM): no table existed named: " + table_name)
+        return None
+class CusFormSea(forms.Form):
+    pc_collection = forms.CharField(max_length=100)
+    collection_address = forms.CharField(max_length=200)
+    consignee = forms.CharField(max_length=300)
+    commodity = forms.CharField(max_length=300)
+    detail_of_package = forms.CharField(max_length=300)
+    type_way = forms.CharField(max_length=100)
+    term = forms.CharField(max_length=100)
+    po_no = forms.CharField(max_length=200)
+    co_by_forwarder= forms.CharField(max_length=300)
+    packing_by_forwarder= forms.CharField(max_length=300)
+    hazardous_yes_no= forms.CharField(max_length=300)
+    date_request = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+    deadline_pickup  = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+    deadline_bill  = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+    deadline_available  = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))         
+    def save(self):
+        if 'pc_collection' in self.cleaned_data:
+            pc_collection1=self.cleaned_data['pc_collection']
+            collection_address1 = self.cleaned_data['collection_address']
+            consignee1 = self.cleaned_data['consignee']
+            commodity1 = self.cleaned_data['commodity']
+            detail_of_packag1 = self.cleaned_data['detail_of_packag']
+            type_way1 = self.cleaned_data['type_way']
+            term1 = self.cleaned_data['term']
+            po_no1 = self.cleaned_data['po_no']
+            hazardous_yes_no1 = self.cleaned_data['hazardous_yes_no']
+            date_request1 = self.cleaned_data['date_request']
+            deadline_pickup1 = self.cleaned_data['deadline_pickup']
+            deadline_bill1 = self.cleaned_data['deadline_bill']
+            deadline_available1 = self.cleaned_data['deadline_available']
+            def datatable(request):
+                form = CusFormSea()
+                if request.method == 'POST':
+                    form = CusFormSea(request.POST)
+                    if form.is_valid():
+                        form.save()
+                        #list_value=['pc_collection3' , 'collection_address2', 'consignee2', 'commodity2', 'detail_of_package1', 'type_way1', 'term1', 'po_no1', 'co_by_forwarder1', 'packing_by_forwarder1', 'hazardous_yes_no1', 'date_request1', 'deadline_pickup1', 'deadline_bill1', 'deadline_available2']
+                        database = "C:/Users/Khanh/Desktop/VAM_web/pythonWeb/db.sqlite3"
+                        conn = sqlite3.connect(database)
+                        cursor = conn.cursor()
+                        get_tables_command = "SELECT name FROM sqlite_master WHERE type = 'table'"
+                        cursor.execute(get_tables_command)
+                        table_names = [i[0] for i in cursor.fetchall()]
+                        print(table_names)
+                        table_name = "khanhs5"
+                        if table_name in table_names:
+                            insert_command = generateInsertCommand(table_name, ['pc_collection ', 'collection_address', 'consignee', 'commodity', 'detail_of_package', 'type_way', 'term', 'po_no', 'co_by_forwarder', 'packing_by_forwarder', 'hazardous_yes_no', 'date_request', 'deadline_pickup', 'deadline_bill', 'deadline_available'])
+                            #cursor.execute(insert_command, ['pc_collection1 ', 'collection_address1', 'consignee1', 'commodity1', 'detail_of_package1', 'type_way1', 'term1', 'po_no1', 'co_by_forwarder1', 'packing_by_forwarder1', 'hazardous_yes_no1', 'date_request1', 'deadline_pickup1', 'deadline_bill1', 'deadline_available1'])
+                            cursor.execute(insert_command, ['pc_collection3' , 'collection_address2', 'consignee2', 'commodity2', 'detail_of_package1', 'type_way1', 'term1', 'po_no1', 'co_by_forwarder1', 'packing_by_forwarder1', 'hazardous_yes_no1', 'date_request1', 'deadline_pickup1', 'deadline_bill1', 'deadline_available2'])
+                            conn.commit()
+print('done run' )
+-->
+
+
+            
+<!-- 
+    class Database_control:
+    def __init__(self):
+        database = os.getcwd() + "/db.sqlite3"
+        self.conn = sqlite3.connect(database)
+        self.cursor = self.conn.cursor()
+        return None
+    def createTable(self):
+        #get list of existing table names
+        get_tables_command = "SELECT name FROM sqlite_master WHERE type = 'table'"
+        self.cursor.execute(get_tables_command)
+        table_names = [i[0] for i in self.cursor.fetchall()]
+
+        #create table if not existed
+        table_name = "khanhs5"
+        if table_name not in table_names:
+            create_command = "CREATE TABLE "+ table_name +" ( pc_collection text, collection_address text, consignee text, commodity text, detail_of_package text, type_way text, term text, po_no text, co_by_forwarder text, packing_by_forwarder text, hazardous_yes_no text, date_request text, deadline_pickup  text, deadline_bill  text, deadline_available  text)"
+            self.cursor.execute(create_command)
+            self.conn.commit()
+        return None
+
+    def insertContent(self):
+        #check table existence
+        get_tables_command = "SELECT name FROM sqlite_master WHERE type = 'table'"
+        self.cursor.execute(get_tables_command)
+        table_names = [i[0] for i in self.cursor.fetchall()]
+        print(table_names)
+
+        table_name = "khanhs5"
+        if table_name in table_names:
+            insert_command = generateInsertCommand(table_name, [ 'pc_collection ', 'collection_address', 'consignee', 'commodity', 'detail_of_package', 'type_way', 'term', 'po_no', 'co_by_forwarder', 'packing_by_forwarder', 'hazardous_yes_no', 'date_request', 'deadline_pickup', 'deadline_bill', 'deadline_available'])
+            self.cursor.execute(insert_command, ['pc_collection ', 'collection_address', 'consignee', 'commodity', 'detail_of_package', 'type_way', 'term', 'po_no', 'co_by_forwarder', 'packing_by_forwarder', 'hazardous_yes_no', 'date_request', 'deadline_pickup', 'deadline_bill', 'deadline_available'])
+            self.conn.commit()
+        else:
+            raise Exception("(VAM): no table existed named: " + table_name)
+        return None
+-->
